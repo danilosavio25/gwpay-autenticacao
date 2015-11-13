@@ -8,17 +8,17 @@ import java.sql.SQLException;
 
 public class ConfigParamDao {
 	
-	 Connection conn;
 	
 	public ConfigParamDao() {
-		ConnectionFactory connectionFactory = new ConnectionFactory();
-		conn = connectionFactory.getConnection();
 	}
 
 	
 	public String getValor(String chave){
 		
 		try {
+			
+			ConnectionFactory connectionFactory = new ConnectionFactory();
+			Connection conn = connectionFactory.getConnection();
 			
 			System.out.println("after getconn");
 			PreparedStatement pstmt;

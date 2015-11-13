@@ -8,17 +8,17 @@ import java.sql.SQLException;
 
 public class UsuarioDao {
 	
-	 Connection conn;
 		
-		public UsuarioDao() {
-			ConnectionFactory connectionFactory = new ConnectionFactory();
-			conn = connectionFactory.getConnection();
-		}
+	public UsuarioDao() {
+
+	}
 	
 	public int autenticar(String login, String senha){
 		
 		try {
 			
+			ConnectionFactory connectionFactory = new ConnectionFactory();
+			Connection conn = connectionFactory.getConnection();
 			System.out.println("after getconn");
 			PreparedStatement pstmt;
 			
@@ -56,6 +56,8 @@ public class UsuarioDao {
 		
 		try {
 			
+			ConnectionFactory connectionFactory = new ConnectionFactory();
+			Connection conn = connectionFactory.getConnection();
 			System.out.println("after getconn");
 			PreparedStatement pstmt;
 			

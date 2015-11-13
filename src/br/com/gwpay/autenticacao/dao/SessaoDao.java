@@ -12,17 +12,17 @@ import br.com.gwpay.autenticacao.model.Sessao;
 
 public class SessaoDao {
 	
-	 Connection conn;
 		
 		public SessaoDao() {
-			ConnectionFactory connectionFactory = new ConnectionFactory();
-			conn = connectionFactory.getConnection();
 		}
 	
 	
 	public boolean inserirSessao(Sessao sessao){
 		
 		try {
+			
+				ConnectionFactory connectionFactory = new ConnectionFactory();
+				Connection conn = connectionFactory.getConnection();
 				System.out.println("after getconn");
 				PreparedStatement pstmt;
 				
