@@ -1,14 +1,10 @@
 package br.com.gwpay.autenticacao.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
-
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
 
 import br.com.gwpay.autenticacao.model.Sessao;
 
@@ -16,55 +12,17 @@ import br.com.gwpay.autenticacao.model.Sessao;
 
 public class SessaoDao {
 	
-	DataSource ds = null;
-	InitialContext ic = null;
-	
-	
-	public Connection getConnection(){
+	 Connection conn;
 		
-
-		Connection connection = null;
-
-		try {
-			System.out.println("Conectando com DataSource");
-			 ic = new InitialContext();  
-			 ds = (DataSource) ic.lookup("java:jboss/datasources/PostgreSQLDS");  
-			 connection = ds.getConnection();
-
-			 
-			/* 
-			 String url = "jdbc:postgresql://localhost:5432/GWPayBD";  
-			 String usuario = "GWPayAdminBD";  
-			 String senha = "GWPayAdminBD00";
-			 
-			 Class.forName("org.postgresql.Driver").newInstance();  
-		      connection = DriverManager.getConnection(url, usuario, senha); 
-			 */
-			 
-		} catch (Exception e) {
-
-			System.out.println("Connection Failed! Check output console");
-			e.printStackTrace();
-			return null;
+		public SessaoDao() {
+			ConnectionFactory connectionFactory = new ConnectionFactory();
+			conn = connectionFactory.getConnection();
 		}
-
-		if (connection != null) {
-			System.out.println("Conectado com sucesso!");
-			return connection;
-		} else {
-			System.out.println("Conexao FAlhou!");
-			return null;
-
-		}
-
-		
-	}
 	
 	
 	public boolean inserirSessao(Sessao sessao){
 		
 		try {
-				Connection conn = getConnection();
 				System.out.println("after getconn");
 				PreparedStatement pstmt;
 				

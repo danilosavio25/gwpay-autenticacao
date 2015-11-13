@@ -1,59 +1,18 @@
 package br.com.gwpay.autenticacao.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
 
 
 public class ConfigParamDao {
 	
-	DataSource ds = null;
-	InitialContext ic = null;
+	 Connection conn;
 	
-	
-	public Connection getConnection(){
-		
-
-		Connection connection = null;
-
-		try {
-			System.out.println("Conectando com DataSource");
-			 ic = new InitialContext();  
-			 ds = (DataSource) ic.lookup("java:jboss/datasources/PostgreSQLDS");  
-			 connection = ds.getConnection();
-			 
-			 
-			/* String url = "jdbc:postgresql://localhost:5432/GWPayBD";  
-			 String usuario = "GWPayAdminBD";  
-			 String senha = "GWPayAdminBD00";
-			 
-			 Class.forName("org.postgresql.Driver").newInstance();  
-		      connection = DriverManager.getConnection(url, usuario, senha);  */
-		      
-
-		} catch (Exception e) {
-
-			System.out.println("Connection Failed! Check output console");
-			e.printStackTrace();
-			return null;
-		}
-
-		if (connection != null) {
-			System.out.println("Conectado com sucesso!");
-			return connection;
-		} else {
-			System.out.println("Conexao FAlhou!");
-			return null;
-
-		}
-
-		
+	public ConfigParamDao() {
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		conn = connectionFactory.getConnection();
 	}
 
 	
@@ -61,7 +20,6 @@ public class ConfigParamDao {
 		
 		try {
 			
-			Connection conn = getConnection();
 			System.out.println("after getconn");
 			PreparedStatement pstmt;
 			
